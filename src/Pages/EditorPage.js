@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Client from "../Components/Client";
 import Editor from "../Components/Editor";
 
 const EditorPage = () => {
+  const socketRef = useRef(null);
+  useEffect(()=>{
+    const init()=async()=>{
+    socketRef.current=await initSocket();
+    }
+  },[])
   const [clients, setClients] = useState([
     {
       socketId: 1,
